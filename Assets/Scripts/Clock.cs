@@ -13,16 +13,46 @@ public class Clock : MonoBehaviour
 
     private float time;
 
+    public enum T { red, black, green, purple, blue }
+
+    public float blackSpeed;
+    public float greenSpeed;
+    public float purpleSpeed;
+    public float blueSpeed;
+
+    public float redSize;
+    public float blackSize;
+    public float greenSize;
+    public float purpleSize;
+    public float blueSize;
+
     private void Start()
     {
         audioSource.time = startTime;
         audioSource.Play();
     }
 
-    private void SpawnBullet(Vector2 position, Vector2 direction, int bulletType)
+    private void SpawnBullet(float xPos, float yPos, Vector2 direction, T bulletType)
     {
-        Bullet bullet = Instantiate(bulletPref, position, Quaternion.identity);
-        bullet.rb.linearVelocity = direction * 10;
+        Bullet bullet = Instantiate(bulletPref, new(xPos, yPos), Quaternion.identity);
+
+        float bulletSpeed = 0;
+
+        if (bulletType == T.green)
+        {
+            bulletSpeed = greenSpeed;
+            bullet.transform.localScale = Vector2.one * greenSize;
+            bullet.sr.color = Color.green;
+        }
+        if (bulletType == T.black)
+        {
+            bulletSpeed = blackSpeed;
+            bullet.transform.localScale = Vector2.one * blackSize;
+            bullet.sr.color = Color.black;
+            bullet.blackOutline.SetActive(true);
+        }
+
+        bullet.rb.linearVelocity = direction * bulletSpeed;
 
         StartCoroutine(DestroyBullet(bullet));
     }
@@ -37,11 +67,11 @@ public class Clock : MonoBehaviour
     public void TimedEvent()
     {
         if (time == 0)
-            SpawnBullet(Vector2.zero, Vector2.right, 0);
+            SpawnBullet(-7, 0, Vector2.right, T.black);
         else if (time == 1)
-            SpawnBullet(Vector2.zero, Vector2.right, 0);
+            SpawnBullet(-7, 0, Vector2.right, T.black);
         else if (time == 2)
-            SpawnBullet(Vector2.zero, Vector2.right, 0);
+            SpawnBullet(-7, 0, Vector2.right, T.black);
 
         time += .25f;
     }

@@ -694,6 +694,15 @@ MonoBehaviour:
   bulletPref: {fileID: -4675452164325238368, guid: 62b0eb7e3ced0b7468bde204f9eb40f0, type: 3}
   startTime: 0
   bulletDuration: 5
+  blackSpeed: 9
+  greenSpeed: 12
+  purpleSpeed: 0
+  blueSpeed: 0
+  redSize: 0
+  blackSize: 1
+  greenSize: 0.4
+  purpleSize: 0
+  blueSize: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
