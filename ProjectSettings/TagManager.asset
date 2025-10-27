@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Border
+    uniqueID: 3181518411
+    locked: 0
   - name: Bullet
     uniqueID: 3228568363
     locked: 0

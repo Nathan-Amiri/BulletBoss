@@ -1,11 +1,11 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Clock : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private Bullet bulletPref;
+    [SerializeField] private List<Bullet> bulletPrefs = new();
 
     public float startTime;
 
@@ -13,18 +13,12 @@ public class Clock : MonoBehaviour
 
     private float time;
 
-    public enum T { red, black, green, purple, blue }
+    public enum T { red, yellow, green, purple, blue }
 
-    public float blackSpeed;
+    public float yellowSpeed;
     public float greenSpeed;
     public float purpleSpeed;
     public float blueSpeed;
-
-    public float redSize;
-    public float blackSize;
-    public float greenSize;
-    public float purpleSize;
-    public float blueSize;
 
     private void Start()
     {
@@ -32,25 +26,35 @@ public class Clock : MonoBehaviour
         audioSource.Play();
     }
 
-    private void SpawnBullet(float xPos, float yPos, Vector2 direction, T bulletType)
+    private void SpawnBullet(T bulletType, float xPos, float yPos, Vector2 direction = default, float blueAngle = 0)
     {
-        Bullet bullet = Instantiate(bulletPref, new(xPos, yPos), Quaternion.identity);
+        Bullet bullet = Instantiate(bulletPrefs[(int)bulletType], new(xPos, yPos), Quaternion.identity);
 
         float bulletSpeed = 0;
 
+        if (bulletType == T.red)
+        {
+            bullet.Red();
+        }
+        else if (bulletType == T.yellow)
+        {
+            bulletSpeed = yellowSpeed;
+        }
         if (bulletType == T.green)
         {
             bulletSpeed = greenSpeed;
-            bullet.transform.localScale = Vector2.one * greenSize;
-            bullet.sr.color = Color.green;
         }
-        if (bulletType == T.black)
+        else if (bulletType == T.purple)
         {
-            bulletSpeed = blackSpeed;
-            bullet.transform.localScale = Vector2.one * blackSize;
-            bullet.sr.color = Color.black;
-            bullet.blackOutline.SetActive(true);
+            bulletSpeed = purpleSpeed;
+            bullet.purple = true;
         }
+        else if (bulletType == T.blue)
+        {
+            bulletSpeed = blueSpeed;
+            bullet.blueAngle = blueAngle;
+        }
+
 
         bullet.rb.linearVelocity = direction * bulletSpeed;
 
@@ -60,19 +64,40 @@ public class Clock : MonoBehaviour
     {
         yield return new WaitForSeconds(bulletDuration);
 
-        Destroy(bullet.gameObject);
+        if (bullet != null)
+            Destroy(bullet.gameObject);
     }
 
 
     public void TimedEvent()
     {
-        if (time == 0)
-            SpawnBullet(-7, 0, Vector2.right, T.black);
-        else if (time == 1)
-            SpawnBullet(-7, 0, Vector2.right, T.black);
-        else if (time == 2)
-            SpawnBullet(-7, 0, Vector2.right, T.black);
-
+        EventList();
         time += .25f;
+    }
+
+    private void EventList()
+    {
+        // Blue angle 15, 25, or 35
+        // Arena's radius is 3.75
+        if (time == 0)
+        {
+            SpawnBullet(T.red, -2, -2);
+            SpawnBullet(T.red, 2, 2);
+        }
+        else if (time == 1)
+        {
+            SpawnBullet(T.red, -2, 2);
+            SpawnBullet(T.red, 2, -2);
+        }
+        else if (time == 2)
+        {
+            SpawnBullet(T.red, 2, 2);
+            SpawnBullet(T.red, -2, -2);
+        }
+        else if (time == 3)
+        {
+            SpawnBullet(T.red, 2, -2);
+            SpawnBullet(T.red, -2, 2);
+        }
     }
 }
