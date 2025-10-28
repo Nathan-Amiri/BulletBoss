@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 99342254}
   - component: {fileID: 99342253}
+  - component: {fileID: 99342255}
   m_Layer: 0
   m_Name: Global Volume
   m_TagString: Untagged
@@ -168,6 +169,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &99342255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 99342252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8df1566ec0213574d948bf01b72c9ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BloomPulse
+  globalVolume: {fileID: 99342253}
+  defaultIntensity: 0.04
+  pulseIntensity: 0.08
+  pulseDuration: 0.15
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,8 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d2c87a4af837c4b8aa1790f3341897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScreenShake
-  duration: 0.15
-  strength: 0.2
   curve:
     serializedVersion: 2
     m_Curve:
@@ -525,6 +540,7 @@ MonoBehaviour:
   rb: {fileID: 1637875082}
   audioSource: {fileID: 1637875084}
   screenShake: {fileID: 519420033}
+  bloomPulse: {fileID: 99342255}
   bounceClip: {fileID: 8300000, guid: 79ed4379dd0c3bf4a978b76d3df41ce7, type: 3}
   reverseClip: {fileID: 8300000, guid: 1a6e997fa4d7c6e42b8b85d6fc505d86, type: 3}
   damageClip: {fileID: 8300000, guid: 5c8f24e7d4df96e4f81387da20c0703f, type: 3}
@@ -786,6 +802,22 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - beatMultiplier: 1
+    trigger:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1637875083}
+          m_TargetAssemblyTypeName: Player, Assembly-CSharp
+          m_MethodName: Pulse
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &1706582163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -807,7 +839,7 @@ MonoBehaviour:
   - {fileID: 2359910948950863684, guid: 511fe06fa8f45a74f8a84f78aa9dd099, type: 3}
   startTime: 0
   bulletDuration: 5
-  yellowSpeed: 0
+  yellowSpeed: 7
   greenSpeed: 12
   purpleSpeed: 6
   blueSpeed: 5

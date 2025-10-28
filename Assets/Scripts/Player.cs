@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
 
     [SerializeField] private ScreenShake screenShake;
+    [SerializeField] private BloomPulse bloomPulse;
 
     [SerializeField] private AudioClip bounceClip;
     [SerializeField] private AudioClip reverseClip;
@@ -74,5 +75,11 @@ public class Player : MonoBehaviour
     {
         screenShake.StartShake(.5f, .5f);
         audioSource.PlayOneShot(damageClip);
+    }
+
+    public void Pulse()
+    {
+        //bloomPulse.Pulse();
+        //screenShake.StartShake(.1f, .11f);
     }
 }
