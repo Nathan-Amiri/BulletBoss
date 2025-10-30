@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &99342253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1509,7 +1509,7 @@ MonoBehaviour:
   bulletDuration: 5
   yellowSpeed: 7
   greenSpeed: 12
-  purpleSpeed: 6
+  purpleSpeed: 5
   blueSpeed: 5
 --- !u!1 &1862007933
 GameObject:

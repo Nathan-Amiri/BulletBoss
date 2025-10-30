@@ -41,7 +41,7 @@ public class Bullet : MonoBehaviour
     }
     private IEnumerator RedExplode()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
 
         sr.enabled = true;
         col.enabled = true;
