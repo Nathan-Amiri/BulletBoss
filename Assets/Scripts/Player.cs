@@ -1,12 +1,16 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource sfxSource;
 
     [SerializeField] private ScreenShake screenShake;
     [SerializeField] private BloomPulse bloomPulse;
+
+    [SerializeField] private TMP_Text scoreText;
 
     [SerializeField] private AudioClip bounceClip;
     [SerializeField] private AudioClip reverseClip;
@@ -18,9 +22,16 @@ public class Player : MonoBehaviour
     private readonly float speedCap = 8;
 
     private bool bounceCooldown;
+    private bool damageCooldown;
+
+    [NonSerialized] public bool isStunned;
+    [NonSerialized] public int score = 100;
 
     private void Update()
     {
+        if (isStunned)
+            return;
+
         if (transform.position.magnitude > 3.52f)
         {
             rb.linearVelocity = Vector2.Reflect(rb.linearVelocity.normalized, transform.position.normalized) * rb.linearVelocity.magnitude;
@@ -36,6 +47,9 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isStunned)
+            return;
+
         rb.AddForce(acceleration * 100 * Time.fixedDeltaTime * moveInput);
 
         if (rb.linearVelocity.magnitude > speedCap)
@@ -51,7 +65,7 @@ public class Player : MonoBehaviour
     private void Reverse()
     {
         screenShake.StartShake(.1f, .1f);
-        audioSource.PlayOneShot(reverseClip);
+        sfxSource.PlayOneShot(reverseClip);
         rb.linearVelocity *= -0.75f;
     }
 
@@ -62,7 +76,7 @@ public class Player : MonoBehaviour
             bounceCooldown = true;
 
             screenShake.StartShake(.15f, .2f);
-            audioSource.PlayOneShot(bounceClip);
+            sfxSource.PlayOneShot(bounceClip);
 
             Invoke(nameof(BounceCooldown), .1f);
         }
@@ -73,13 +87,27 @@ public class Player : MonoBehaviour
     }
     private void Damage()
     {
-        screenShake.StartShake(.5f, .5f);
-        audioSource.PlayOneShot(damageClip);
+        if (!damageCooldown)
+        {
+            damageCooldown = true;
+
+            screenShake.StartShake(.5f, .5f);
+            sfxSource.PlayOneShot(damageClip);
+
+            Invoke(nameof(DamageCooldown), .6f);
+
+            score -= 5;
+            scoreText.text = "Score: " + score;
+        }
+    }
+    private void DamageCooldown()
+    {
+        damageCooldown = false;
     }
 
-    public void Pulse()
+    public void StunPlayer()
     {
-        //bloomPulse.Pulse();
-        //screenShake.StartShake(.1f, .11f);
+        isStunned = true;
+        rb.linearVelocity = Vector2.zero;
     }
 }

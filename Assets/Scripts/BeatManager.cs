@@ -3,15 +3,17 @@ using UnityEngine.Events;
 
 public class BeatManager : MonoBehaviour
 {
+    // This script only calls the trigger when the music is playing
+
     private readonly float bpm = 120;
-    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioSource musicSource;
     [SerializeField] private Intervals[] intervals;
 
     private void Update()
     {
         foreach (Intervals interval in intervals)
         {
-            float sampledTime = audioSource.timeSamples / (audioSource.clip.frequency * interval.GetIntervalLength(bpm));
+            float sampledTime = musicSource.timeSamples / (musicSource.clip.frequency * interval.GetIntervalLength(bpm));
             interval.CheckForNewInterval(sampledTime);
         }
     }
