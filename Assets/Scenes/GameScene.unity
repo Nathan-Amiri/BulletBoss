@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &99342253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,6 +1504,7 @@ MonoBehaviour:
   - {fileID: 8124747543446810677, guid: 6da2372ad5abb38418f167a132c25967, type: 3}
   - {fileID: 5486315069951823282, guid: c75eaf22d21a3e24481dd22faef5b28f, type: 3}
   - {fileID: 2359910948950863684, guid: 511fe06fa8f45a74f8a84f78aa9dd099, type: 3}
+  tests: []
   startTime: 0
   bulletDuration: 5
   yellowSpeed: 7

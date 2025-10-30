@@ -96,13 +96,21 @@ public class Player : MonoBehaviour
 
             Invoke(nameof(DamageCooldown), .6f);
 
-            score -= 5;
+            score -= 2;
+            if (score < 0)
+                score = 0;
+            scoreText.color = Color.red;
             scoreText.text = "Score: " + score;
+            Invoke(nameof(ScoreColorReset), .5f);
         }
     }
     private void DamageCooldown()
     {
         damageCooldown = false;
+    }
+    private void ScoreColorReset()
+    {
+        scoreText.color = Color.white;
     }
 
     public void StunPlayer()
