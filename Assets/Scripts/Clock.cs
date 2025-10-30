@@ -68,7 +68,7 @@ public class Clock : MonoBehaviour
     {
         musicSource.time = startTime;
         time = startTime;
-        Invoke(nameof(StartMusic), 2);//4);
+        Invoke(nameof(StartMusic), 4);
     }
     private void StartMusic()
     {
@@ -425,7 +425,15 @@ public class Clock : MonoBehaviour
             SpawnBullet(T.green, -8, 2, new(1, -.25f));
 
         else if (time == 42)
+        {
+            //Yellow Outside Spin
+            SpawnBullet(T.yellow, -8, 0, new(1, 1));
+            SpawnBullet(T.yellow, 8, 0, new(-1, -1));
+            SpawnBullet(T.yellow, 0, 8, new(1, -1));
+            SpawnBullet(T.yellow, 0, -8, new(-1, 1));
+
             SpawnBullet(T.green, 8, 2, new(-1, -.25f));
+        }
         else if (time == 42.5f)
             SpawnBullet(T.green, 8, 2, new(-1, -.25f));
         else if (time == 43)
@@ -434,7 +442,15 @@ public class Clock : MonoBehaviour
             SpawnBullet(T.green, 8, 2, new(-1, -.25f));
 
         else if (time == 44)
+        {
+            //Yellow Outside Spin
+            SpawnBullet(T.yellow, -8, 0, new(1, 1));
+            SpawnBullet(T.yellow, 8, 0, new(-1, -1));
+            SpawnBullet(T.yellow, 0, 8, new(1, -1));
+            SpawnBullet(T.yellow, 0, -8, new(-1, 1));
+
             SpawnBullet(T.green, -8, 2, new(1, -.25f));
+        }
         else if (time == 44.5f)
             SpawnBullet(T.green, -8, 2, new(1, -.25f));
         else if (time == 45)
@@ -443,7 +459,15 @@ public class Clock : MonoBehaviour
             SpawnBullet(T.green, -8, 2, new(1, -.25f));
 
         else if (time == 46)
+        {
+            //Yellow Outside Spin
+            SpawnBullet(T.yellow, -8, 0, new(1, 1));
+            SpawnBullet(T.yellow, 8, 0, new(-1, -1));
+            SpawnBullet(T.yellow, 0, 8, new(1, -1));
+            SpawnBullet(T.yellow, 0, -8, new(-1, 1));
+
             SpawnBullet(T.green, 8, 2, new(-1, -.25f));
+        }
         else if (time == 46.5f)
             SpawnBullet(T.green, 8, 2, new(-1, -.25f));
         else if (time == 47)
@@ -731,11 +755,13 @@ public class Clock : MonoBehaviour
             SpawnBullet(T.purple, -4, -2, new(1, 1));
         else if (time == 126)
             SpawnBullet(T.purple, 4, 2, new(-1, -1));
-
+        
         else if (time == 128)
         {
             SpawnBullet(T.purple, -3.5f, -3, new(0, 1));
             SpawnBullet(T.purple, 3.5f, 3, new(0, -1));
+
+            SpawnBullet(T.purple, -2, -3, new(0, 1));
         }
         else if (time == 129)
         {
@@ -746,6 +772,8 @@ public class Clock : MonoBehaviour
         {
             SpawnBullet(T.purple, -3.5f, -3, new(0, 1));
             SpawnBullet(T.purple, 3.5f, 3, new(0, -1));
+
+            SpawnBullet(T.purple, 2, 3, new(0, -1));
         }
         else if (time == 131)
         {
@@ -757,6 +785,8 @@ public class Clock : MonoBehaviour
         {
             SpawnBullet(T.purple, -3.5f, -3, new(0, 1));
             SpawnBullet(T.purple, 3.5f, 3, new(0, -1));
+
+            SpawnBullet(T.purple, -2, -3, new(0, 1));
         }
         else if (time == 133)
         {
@@ -767,6 +797,8 @@ public class Clock : MonoBehaviour
         {
             SpawnBullet(T.purple, -3.5f, -3, new(0, 1));
             SpawnBullet(T.purple, 3.5f, 3, new(0, -1));
+
+            SpawnBullet(T.purple, 2, 3, new(0, -1));
         }
         else if (time == 135)
         {
@@ -956,12 +988,16 @@ public class Clock : MonoBehaviour
             //Purple Opposite Bounce
             SpawnBullet(T.purple, -4, -2, new(1, 0));
             SpawnBullet(T.purple, 4, -2, new(-1, 0));
+
+            SpawnBullet(T.green, -8, 2, new(1, -.25f));
         }
         else if (time == 162)
         {
             //Purple Opposite Bounce
             SpawnBullet(T.purple, -4, 2, new(1, 0));
             SpawnBullet(T.purple, 4, 2, new(-1, 0));
+
+            SpawnBullet(T.green, 8, 2, new(-1, -.25f));
         }
         else if (time == 164)
         {
@@ -977,7 +1013,7 @@ public class Clock : MonoBehaviour
             SpawnBullet(T.purple, -4, 2, new(1, 0));
             SpawnBullet(T.purple, 4, 2, new(-1, 0));
 
-            SpawnBullet(T.green, 8, 2, new(-1, .25f));
+            SpawnBullet(T.green, 8, 2, new(-1, -.25f));
         }
 
         else if (time == 168)
@@ -1081,6 +1117,30 @@ public class Clock : MonoBehaviour
         }
 
         else if (time == 176)
+        {
+            //Yellow Outside Spin
+            SpawnBullet(T.yellow, -8, 0, new(1, 1));
+            SpawnBullet(T.yellow, 8, 0, new(-1, -1));
+            SpawnBullet(T.yellow, 0, 8, new(1, -1));
+            SpawnBullet(T.yellow, 0, -8, new(-1, 1));
+        }
+        else if (time == 178)
+        {
+            //Yellow Outside Spin
+            SpawnBullet(T.yellow, -8, 0, new(1, 1));
+            SpawnBullet(T.yellow, 8, 0, new(-1, -1));
+            SpawnBullet(T.yellow, 0, 8, new(1, -1));
+            SpawnBullet(T.yellow, 0, -8, new(-1, 1));
+        }
+        else if (time == 180)
+        {
+            //Yellow Outside Spin
+            SpawnBullet(T.yellow, -8, 0, new(1, 1));
+            SpawnBullet(T.yellow, 8, 0, new(-1, -1));
+            SpawnBullet(T.yellow, 0, 8, new(1, -1));
+            SpawnBullet(T.yellow, 0, -8, new(-1, 1));
+        }
+        else if (time == 182)
         {
             //Yellow Outside Spin
             SpawnBullet(T.yellow, -8, 0, new(1, 1));
