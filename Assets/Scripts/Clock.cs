@@ -18,9 +18,9 @@ public class Clock : MonoBehaviour
     [SerializeField] private List<Test> tests = new();
     private void BulletTest()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-            foreach (Test test in tests)
-                SpawnBullet(test.bulletType, test.xPos, test.yPos, test.direction, test.blueAngle);
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //    foreach (Test test in tests)
+        //        SpawnBullet(test.bulletType, test.xPos, test.yPos, test.direction, test.blueAngle);
     }
 
     public float startTime;
